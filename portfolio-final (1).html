@@ -1,0 +1,1259 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Стена пропусков · 6 лет в ИТМО</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f6f1e6;
+    --paper-2: #efe8d4;
+    --muted: #6e6a5e;
+    --accent: #ffd23a;
+    --accent-2: #ff6b3d;
+    --accent-3: #4f7cff;
+    --green: #3fa66a;
+    --purple: #b454ff;
+    --red: #e63946;
+    --gold: #b8941f;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    background: #1a1916;
+    background-image:
+      radial-gradient(ellipse at top, rgba(255,210,58,0.05) 0, transparent 60%),
+      radial-gradient(ellipse at bottom, rgba(255,107,61,0.04) 0, transparent 60%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 32px 24px;
+    color: var(--paper);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 36px;
+    align-items: end;
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 32px; right: 32px;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 8px, transparent 8px 14px);
+  }
+
+  .hero-portrait {
+    width: 260px; height: 320px;
+    border: 2.5px solid var(--paper);
+    background:
+      repeating-linear-gradient(135deg, transparent 0 8px, rgba(255,255,255,0.05) 8px 9px);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    transform: rotate(-1.5deg);
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.4);
+  }
+  .hero-portrait .ico { font-size: 60px; margin-bottom: 8px; opacity: 0.45; }
+  .hero-portrait::after {
+    content: "PHOTO · 3×4";
+    position: absolute;
+    bottom: -22px;
+    left: 50%; transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-title {
+    min-width: 0;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .hero-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: clamp(48px, 7.5vw, 92px);
+    line-height: 0.92;
+    margin: 0 0 6px;
+    color: var(--paper);
+    letter-spacing: -0.045em;
+  }
+  .hero-tag {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: rgba(246,241,230,0.72);
+    margin: 16px 0 0;
+    max-width: 620px;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+  }
+  .hero-tag b { color: var(--accent); font-weight: 600; }
+  .hero-quote {
+    margin-top: 22px;
+    padding-left: 18px;
+    border-left: 3px solid var(--accent-2);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(246,241,230,0.88);
+    max-width: 580px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-stats {
+    display: flex; flex-direction: column;
+    gap: 16px;
+    border-left: 1px dashed rgba(255,255,255,0.25);
+    padding-left: 28px;
+    min-width: 180px;
+  }
+  .hero-stat .v {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 38px; line-height: 0.95;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+  }
+  .hero-stat .v .pls { font-size: 24px; color: var(--accent-2); vertical-align: top; font-weight: 700; }
+  .hero-stat .l {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-top: 4px;
+  }
+
+  /* ===== ABOUT ===== */
+  .hero-about {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 28px 32px 0;
+  }
+  .hero-about-inner {
+    border-left: 3px solid var(--accent-2);
+    padding-left: 22px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(13px, 1.1vw, 16px);
+    color: rgba(246,241,230,0.88);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+
+  /* ===== INTRO ===== */
+  .intro {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 32px 0;
+    color: var(--paper);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .intro-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 720px;
+    color: rgba(246,241,230,0.7);
+    letter-spacing: -0.005em;
+  }
+  .intro-text b { color: var(--paper); font-weight: 600; }
+
+  /* ===== FILTERS ===== */
+  .filters {
+    max-width: 1280px;
+    margin: 36px auto 0;
+    padding: 0 32px;
+    display: flex; gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-right: 6px;
+  }
+  .filter {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: rgba(246,241,230,0.85);
+    padding: 6px 14px 5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 22px;
+    transition: all 0.18s;
+    display: inline-flex; align-items: center; gap: 6px;
+    letter-spacing: -0.005em;
+  }
+  .filter:hover { border-color: var(--accent); color: var(--paper); }
+  .filter.active { background: var(--accent); color: var(--ink); border-color: var(--accent); font-weight: 700; }
+  .filter .cnt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    opacity: 0.7;
+  }
+  .filter.active .cnt { opacity: 0.6; color: var(--ink); }
+
+  /* ===== WALL ===== */
+  .wall {
+    max-width: 1280px;
+    margin: 30px auto 0;
+    padding: 38px 32px 60px;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 80px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 80px);
+    border-top: 1px dashed rgba(255,255,255,0.18);
+    position: relative;
+  }
+  .wall::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 70%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,210,58,0.4) 50%, transparent);
+    filter: blur(1px);
+  }
+
+  .wall-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 56px 28px;
+    position: relative;
+  }
+
+  /* ===== BADGE (festival pass) ===== */
+  .wall-grid {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 70px 30px;
+  }
+
+  .badge {
+    cursor: pointer;
+    position: relative;
+    padding-top: 110px;
+    transition: filter 0.3s;
+    transform-origin: 50% 0;
+    animation: sway 7s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  .badge.hidden { display: none; }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(var(--rot, 0deg)); }
+    50% { transform: rotate(calc(var(--rot, 0deg) + 0.8deg)); }
+  }
+  .badge:nth-child(7n+1) { --rot: -2.0deg; --delay: 0s; }
+  .badge:nth-child(7n+2) { --rot: 1.6deg; --delay: -1.5s; }
+  .badge:nth-child(7n+3) { --rot: -1.0deg; --delay: -3s; }
+  .badge:nth-child(7n+4) { --rot: 2.2deg; --delay: -2s; }
+  .badge:nth-child(7n+5) { --rot: -0.6deg; --delay: -4s; }
+  .badge:nth-child(7n+6) { --rot: 1.2deg; --delay: -0.7s; }
+  .badge:nth-child(7n+7) { --rot: -1.8deg; --delay: -2.8s; }
+
+  .badge:hover {
+    animation-play-state: paused;
+    z-index: 10;
+  }
+  .badge:hover .badge-card {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow:
+      0 22px 36px -10px rgba(0,0,0,0.85),
+      0 0 0 1px rgba(0,0,0,0.3);
+  }
+
+  /* ----- LANYARD ----- */
+  .lanyard {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 120px;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .lanyard svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+  /* ----- CARD ----- */
+  .badge-card {
+    background: var(--bg, #1a1a1a);
+    color: var(--fg, #ffffff);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 16px 28px -10px rgba(0,0,0,0.75),
+      0 0 0 1px rgba(0,0,0,0.35);
+    transition: transform 0.3s cubic-bezier(.2,.7,.4,1.4), box-shadow 0.3s;
+    aspect-ratio: 1 / 1.55;
+    display: flex;
+    flex-direction: column;
+  }
+  /* glossy plastic highlight */
+  .badge-card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+    pointer-events: none;
+    border-radius: 8px 8px 0 0;
+  }
+  /* pattern layer */
+  .card-pattern {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    border-radius: 8px;
+    background-color: transparent;
+    background-image: var(--pattern, none);
+    mix-blend-mode: screen;
+  }
+  /* radial accent for depth */
+  .badge-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 90%, var(--accent, transparent) 0%, transparent 60%);
+    opacity: 0.55;
+    pointer-events: none;
+    border-radius: 8px;
+  }
+
+  /* plastic loop at top of badge for clip to go through */
+  .card-loop {
+    position: absolute;
+    top: 10px; left: 50%;
+    transform: translateX(-50%);
+    width: 56px; height: 16px;
+    background:
+      radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 60%, transparent 100%),
+      linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    border-radius: 8px;
+    z-index: 3;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+  }
+  .card-loop::after {
+    /* slot through which the metal clip passes */
+    content: "";
+    position: absolute;
+    top: 5px; left: 50%;
+    transform: translateX(-50%);
+    width: 28px; height: 6px;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.6);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 2;
+    padding: 34px 16px 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.25;
+    opacity: 0.85;
+    max-width: 80%;
+    margin-bottom: 12px;
+    min-height: 22px;
+  }
+  .card-photo {
+    flex: 0 0 auto;
+    aspect-ratio: 4 / 3;
+    background:
+      repeating-linear-gradient(135deg, transparent 0 6px, rgba(255,255,255,0.08) 6px 7px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    opacity: 0.65;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+  .card-photo:has(img) {
+    opacity: 1;
+    background: none;
+  }
+  .card-photo .ico {
+    font-size: 28px; line-height: 1;
+    opacity: 0.55;
+    margin-bottom: 2px;
+  }
+  .card-title {
+    font-family: 'Inter', 'Archivo Black', sans-serif;
+    font-weight: 900;
+    font-size: 23px;
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .card-period {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 1;
+    opacity: 0.92;
+    letter-spacing: -0.01em;
+  }
+  .card-bottom {
+    position: relative;
+    z-index: 2;
+    padding: 8px 16px 13px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    line-height: 1.4;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .card-bottom .venue { max-width: 60%; }
+  .card-bottom .reg { text-align: right; flex-shrink: 0; }
+
+  /* badge stamps */
+  .badge-stamp {
+    position: absolute;
+    top: 118px;
+    right: -6px;
+    border: 1.5px solid var(--accent-2);
+    color: var(--accent-2);
+    padding: 3px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    transform: rotate(8deg);
+    background: rgba(0,0,0,0.85);
+    border-radius: 2px;
+    z-index: 5;
+    text-transform: uppercase;
+  }
+  .badge-stamp.gold { border-color: var(--gold); color: var(--gold); }
+  .badge-stamp.locked { border-color: var(--muted); color: var(--muted); }
+  .badge-stamp.red { border-color: var(--red); color: #ff8a8a; }
+
+  /* ===== AFTER WALL ===== */
+  .map-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 32px 0;
+    color: var(--paper);
+  }
+  .map-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 42px;
+    margin: 0 0 8px;
+    line-height: 1;
+    color: var(--paper);
+    letter-spacing: -0.035em;
+  }
+  .map-section .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .map-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+  .map-card {
+    border: 1.5px dashed rgba(255,255,255,0.3);
+    padding: 14px 16px;
+    color: rgba(246,241,230,0.85);
+  }
+  .map-card .ico { font-size: 22px; }
+  .map-card .ttl {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    margin: 4px 0 2px;
+    color: var(--paper);
+    letter-spacing: -0.02em;
+  }
+  .map-card .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    opacity: 0.55;
+  }
+
+  .thanks {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 72px 32px;
+    text-align: center;
+    color: var(--paper);
+  }
+  .thanks .quote {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.05;
+    color: var(--paper);
+    max-width: 880px;
+    margin: 0 auto 20px;
+    letter-spacing: -0.035em;
+  }
+  .thanks .quote em {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 800;
+  }
+  .thanks .sign {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(246,241,230,0.55);
+    margin-top: 22px;
+    letter-spacing: -0.005em;
+  }
+
+  /* ===== CONTACTS ===== */
+  .contacts {
+    background: var(--paper);
+    border-top: 4px solid var(--ink);
+    padding: 48px 32px 56px;
+  }
+  .contacts-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+  .contacts h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    margin: 0 0 8px;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+  .contacts .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .contact-card {
+    border: 2px solid var(--ink);
+    background: var(--paper-2);
+    padding: 18px 22px;
+    box-shadow: 6px 6px 0 var(--ink);
+    position: relative;
+  }
+  .contact-card .row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1.5px dashed rgba(0,0,0,0.2);
+    align-items: center;
+  }
+  .contact-card .row:last-child { border-bottom: none; }
+  .contact-card .k {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .contact-card .v {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--muted);
+    font-style: italic;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 2px;
+    min-height: 22px;
+    letter-spacing: -0.005em;
+  }
+  .contact-card .v.filled { font-style: normal; color: var(--ink); border-bottom-style: dashed; font-weight: 500; }
+
+  .footer-meta {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px 32px 24px;
+    color: var(--paper);
+    opacity: 0.4;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-back {
+    position: fixed; inset: 0;
+    background: rgba(10,10,10,0.75);
+    display: none; align-items: center; justify-content: center;
+    z-index: 100;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+  .modal-back.active { display: flex; }
+  .modal {
+    background: var(--paper);
+    border: 2.5px solid var(--ink);
+    max-width: 780px; width: 100%;
+    padding: 0;
+    box-shadow: 12px 12px 0 rgba(0,0,0,0.6);
+    position: relative;
+    max-height: 92vh;
+    overflow-y: auto;
+    animation: modal-in 0.25s cubic-bezier(.2,.7,.4,1.2);
+  }
+  @keyframes modal-in {
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-close {
+    position: absolute; top: 12px; right: 18px;
+    background: transparent; border: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px; cursor: pointer;
+    color: rgba(0,0,0,0.5);
+    z-index: 10;
+  }
+  .modal-close:hover { color: var(--ink); }
+  .modal-head {
+    background: var(--c, var(--accent));
+    color: var(--ink);
+    padding: 28px 32px 22px;
+    border-bottom: 2px solid var(--ink);
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .modal-head.dark { color: var(--paper); }
+  .modal-head .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .modal-head h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    margin: 6px 0 0;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+  .modal-head .reg {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    opacity: 0.6;
+  }
+  .modal-body {
+    padding: 26px 32px 8px;
+  }
+  .modal-body p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15.5px;
+    line-height: 1.55;
+    margin: 0 0 12px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .modal-body p b {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .modal-tags {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .modal-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 4px 9px 3px;
+    border: 1.5px solid var(--ink);
+    background: var(--paper-2);
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .modal-stats {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    border-top: 1.5px dashed rgba(0,0,0,0.2);
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+  .modal-stat .v {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 0.95;
+    color: var(--accent-2);
+    letter-spacing: -0.03em;
+  }
+  .modal-stat .l {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 2px;
+  }
+  /* ===== MODAL PHOTO GALLERY ===== */
+  .modal-gallery-wrap {
+    padding: 0 32px 22px;
+  }
+  .modal-gallery-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .modal-gallery-label .cnt {
+    font-weight: 500;
+    opacity: 0.7;
+  }
+  .modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 80px;
+    gap: 8px;
+  }
+  .modal-gallery.count-1 { grid-template-columns: 1fr; grid-auto-rows: 280px; }
+  .modal-gallery.count-2 { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+  .modal-gallery.count-3 { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 160px; }
+  .modal-gallery.count-4 { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+
+  /* 5-photo masonry: 1 big + 2x2 small */
+  .modal-gallery.count-5 { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 110px; }
+  .modal-gallery.count-5 .modal-photo:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .modal-gallery.count-5 .modal-photo:nth-child(n+2) { grid-column: span 1; grid-row: span 1; }
+
+  /* 6-photo: равномерная сетка 3×2 */
+  .modal-gallery.count-6 { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 150px; }
+
+  /* 7+ : flexible grid */
+  .modal-gallery.count-many {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-auto-rows: 110px;
+  }
+
+  .modal-photo {
+    border: 1.5px solid var(--ink);
+    background:
+      repeating-linear-gradient(135deg, transparent 0 6px, rgba(0,0,0,0.07) 6px 7px),
+      linear-gradient(135deg, var(--paper-2) 0%, var(--paper) 100%);
+    display: flex; align-items: flex-end; justify-content: flex-start;
+    flex-direction: column;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s;
+  }
+  .modal-photo:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .modal-photo .ico {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    font-size: 32px;
+    opacity: 0.45;
+    filter: grayscale(0.2);
+    pointer-events: none;
+  }
+  .modal-photo .cap {
+    position: relative;
+    z-index: 2;
+    margin: auto 10px 8px;
+    padding: 3px 7px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    line-height: 1.1;
+    max-width: calc(100% - 16px);
+    align-self: flex-start;
+  }
+  .modal-photo .corner {
+    position: absolute;
+    top: 6px; right: 8px;
+    z-index: 2;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: var(--muted);
+    background: rgba(255,255,255,0.7);
+    padding: 1px 5px;
+  }
+  /* tape strip on first photo for character */
+  .modal-gallery.count-5 .modal-photo:nth-child(1)::before,
+  .modal-gallery.count-6 .modal-photo:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 60px; height: 16px;
+    background: rgba(255, 210, 58, 0.7);
+    border: 1px solid rgba(0,0,0,0.2);
+    z-index: 3;
+  }
+  .modal-nav {
+    border-top: 2px solid var(--ink);
+    padding: 14px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--paper-2);
+  }
+  .modal-nav-btn {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    padding: 8px 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    letter-spacing: -0.005em;
+    transition: background 0.15s;
+  }
+  .modal-nav-btn:hover { background: var(--accent); }
+  .modal-nav .info {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 24px; padding: 36px 24px 20px; }
+    .hero-stats { flex-direction: row; border-left: none; border-top: 1px dashed rgba(255,255,255,0.25); padding: 18px 0 0; padding-left: 0; flex-wrap: wrap; }
+    .intro { grid-template-columns: 1fr; padding: 24px 24px 0; }
+    .modal-body { grid-template-columns: 1fr; padding: 22px 22px 18px; }
+    .wall { padding: 28px 18px 50px; }
+    .wall-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 50px 18px; }
+    .contacts-inner { grid-template-columns: 1fr; }
+    .filters { padding: 0 18px; }
+  }
+
+  @media (max-width: 700px) {
+    .card-title { font-size: 16px; }
+    .card-period { font-size: 12px; }
+    .card-eyebrow { font-size: 7px; }
+    .card-bottom { font-size: 6.5px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-portrait">
+    <img src="images/Main/me.jpg" alt="Ефремова Елизавета" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:2px;">
+  </div>
+  <div class="hero-title">
+    <div class="hero-eyebrow">ИТМО · 2020 — 2026 · 6 лет</div>
+    <h1 class="hero-name">Ефремова Елизавета</h1>
+    <p class="hero-tag">Моя заявка на конкурс в виде стены бейджей! Каждый бейдж - это яркое событие, которое произошло за 6 лет: <b>сборная по сноуборду, приёмка ПИиКТ, амбассадор Яндекса, ментор, преподаватель в Китае и многое другое!</b>.</p>
+  </div>
+</header>
+
+<div class="hero-about">
+  <div class="hero-about-inner">
+    «Я прожила очень насыщенные 6 лет в ИТМО, они были наполнены сотнями крутых моментов, знакомств, событий и эмоций. Я встретила здесь всех своих близких друзей и коллег.<br><br>
+    Я была студентом, но в то же время спортсменом, активистом, мини-преподавателем, амбассадором, организатором, сотрудником и путешественником!<br><br>
+    ИТМО позволял мне быть разной, принимал и поддерживал все идеи — за что я невероятно ему благодарна!
+  </div>
+</div>
+
+<div class="intro">
+  <div class="intro-text">
+    <b>Как изучить:</b> кликните на любой бейдж и раскроется целая история с цифрами, тегами и фото! Приятно познакомиться! 
+  </div>
+</div>
+
+<!-- ===== FILTERS ===== -->
+<div class="filters" id="filters">
+  <span class="filter-label">Фильтр →</span>
+  <button class="filter active" data-cat="all">все <span class="cnt">11</span></button>
+  <button class="filter" data-cat="priemka">приёмка <span class="cnt">5</span></button>
+  <button class="filter" data-cat="teach">преподавание <span class="cnt">2</span></button>
+  <button class="filter" data-cat="organizer">организатор <span class="cnt">3</span></button>
+  <button class="filter" data-cat="participant">участник <span class="cnt">4</span></button>
+</div>
+
+<!-- ===== WALL ===== -->
+<main class="wall">
+  <div class="wall-grid" id="wallGrid"></div>
+</main>
+
+<!-- ===== THANKS ===== -->
+<section class="thanks">
+  <div class="quote">ИТМО — это не просто Университет.<br>Это <em>Семья.</em></div>
+  <div class="sign">— и место, которое подарило мне любимых людей —</div>
+</section>
+
+<!-- ===== CONTACTS ===== -->
+<section class="contacts">
+  <div class="contacts-inner">
+    <div>
+      <h3>📎 Контакты</h3>
+      <div class="sub">Давайте познакомимся поближе!</div>
+      <div class="contact-card">
+        <div class="row"><span class="k">email</span><span class="v">efremova.li2015@yandex.ru</span></div>
+        <div class="row"><span class="k">telegram</span><span class="v filled"><a href="https://t.me/lizo4k0" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1.5px dashed var(--ink);">@lizo4k0</a></span></div>
+        <div class="row"><span class="k">github</span><span class="v filled"><a href="https://github.com/Liz04ka" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1.5px dashed var(--ink);">github.com/Liz04ka</a></span></div>
+        <div class="row"><span class="k">vk</span><span class="v filled"><a href="https://vk.com/lizo4k0" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1.5px dashed var(--ink);">vk.com/lizo4k0</a></span></div>
+      </div>
+    </div>
+    <div>
+      <h3>О себе:</h3>
+      <div class="sub">Немного вводной информации:</div>
+      <div class="contact-card" style="font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.55; font-weight: 400;">
+        <p style="margin:0 0 10px;">Я выпускница магистратуры ИТМО, факультета ПИиКТ, направление "веб-технологии". За 6 лет учебы успела побывать в сборной по сноуборду, амбассадором Яндекса, ментором по веб-программированию, менеджером по приёму на свой факультет и преподавателем в Китае.</p>
+        <!-- <p style="margin:0; color: var(--muted); font-style: italic;">— ваше любимое описание себя здесь —</p> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER META ===== -->
+<div class="footer-meta">
+  <div>· сделано с любовью к ИТМО · 2026 ·</div>
+  <div>v1.0 · стена пропусков</div>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-back" id="modalBack" onclick="if(event.target===this) closeBadge()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeBadge()" aria-label="Закрыть">✕</button>
+    <div class="modal-head" id="mHead">
+      <div>
+        <div class="eyebrow" id="mEyebrow">ROLE · YEAR</div>
+        <h3 id="mTitle">Заголовок</h3>
+      </div>
+      <div class="reg" id="mReg">REG · 000</div>
+    </div>
+    <div class="modal-body">
+      <div id="mBody"></div>
+      <div class="modal-tags" id="mTags"></div>
+      <div class="modal-stats" id="mStats"></div>
+    </div>
+    <div class="modal-gallery-wrap" id="mGalleryWrap">
+      <div class="modal-gallery-label">
+        <span>// photo wall</span>
+        <span class="cnt" id="mGalleryCnt"></span>
+      </div>
+      <div class="modal-gallery" id="mGallery"></div>
+    </div>
+    <div class="modal-nav">
+      <button class="modal-nav-btn" onclick="navBadge(-1)">← пред</button>
+      <div class="info" id="mNavInfo">1 / 13</div>
+      <button class="modal-nav-btn" onclick="navBadge(1)">след →</button>
+    </div>
+  </div>
+</div>
+
+<script src="badges-data.js"></script>
+<script>
+  // ===== Wall builder =====
+  const grid = document.getElementById('wallGrid');
+
+  // SVG patterns (subtle overlay on cards)
+  const PATTERNS = {
+    stripes:  'repeating-linear-gradient(45deg, rgba(255,255,255,0.3) 0 1px, transparent 1px 12px)',
+    dots:     'radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1.6px)',
+    grid:     'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)',
+    waves:    'radial-gradient(circle at 0 50%, transparent 18px, rgba(255,255,255,0.3) 18.5px, transparent 20px), radial-gradient(circle at 20px 50%, transparent 18px, rgba(255,255,255,0.3) 18.5px, transparent 20px)',
+    circles:  'radial-gradient(circle, rgba(255,255,255,0.18) 6px, transparent 6.5px)',
+    vlines:   'repeating-linear-gradient(90deg, rgba(255,255,255,0.25) 0 1px, transparent 1px 8px)',
+    diag:     'repeating-linear-gradient(-45deg, rgba(255,255,255,0.25) 0 2px, transparent 2px 14px)',
+    none:     'none',
+  };
+  const PATTERN_SIZE = {
+    stripes: 'auto', dots: '8px 8px', grid: '16px 16px', waves: '20px 20px',
+    circles: '14px 14px', vlines: 'auto', diag: 'auto', none: 'auto'
+  };
+
+  function ribbonAndClipSVG(ribbonColor, ribbonPattern) {
+    // Pattern overlay for ribbon
+    let patId = 'rp-' + Math.random().toString(36).slice(2, 8);
+    let pattern = '';
+    if (ribbonPattern === 'dots') {
+      pattern = `<pattern id="${patId}" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1" fill="rgba(255,255,255,0.35)"/></pattern>`;
+    } else if (ribbonPattern === 'stripes') {
+      pattern = `<pattern id="${patId}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="2" height="6" fill="rgba(255,255,255,0.25)"/></pattern>`;
+    } else if (ribbonPattern === 'waves') {
+      pattern = `<pattern id="${patId}" width="14" height="10" patternUnits="userSpaceOnUse"><path d="M 0 5 Q 3.5 0 7 5 T 14 5" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/></pattern>`;
+    } else if (ribbonPattern === 'lines') {
+      pattern = `<pattern id="${patId}" width="6" height="6" patternUnits="userSpaceOnUse"><rect x="2" width="1" height="6" fill="rgba(0,0,0,0.25)"/></pattern>`;
+    }
+    const overlay = pattern ? `<rect x="0" y="0" width="64" height="98" fill="url(#${patId})"/>` : '';
+
+    return `
+      <svg viewBox="0 0 64 120" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
+        <defs>
+          ${pattern}
+          <linearGradient id="metal-${patId}" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#2a2a2a"/>
+            <stop offset="25%" stop-color="#8a8a8a"/>
+            <stop offset="50%" stop-color="#c0c0c0"/>
+            <stop offset="75%" stop-color="#6a6a6a"/>
+            <stop offset="100%" stop-color="#1a1a1a"/>
+          </linearGradient>
+          <linearGradient id="ribbon-${patId}" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="${ribbonColor}" stop-opacity="0.7"/>
+            <stop offset="50%" stop-color="${ribbonColor}" stop-opacity="1"/>
+            <stop offset="100%" stop-color="${ribbonColor}" stop-opacity="0.6"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Left ribbon strand (trapezoid narrowing toward clip) -->
+        <path d="M 0 0 L 18 0 L 30 92 L 22 92 Z" fill="url(#ribbon-${patId})" stroke="rgba(0,0,0,0.35)" stroke-width="0.4"/>
+        <!-- Right ribbon strand -->
+        <path d="M 46 0 L 64 0 L 42 92 L 34 92 Z" fill="url(#ribbon-${patId})" stroke="rgba(0,0,0,0.35)" stroke-width="0.4"/>
+        <!-- Pattern overlay clipped to ribbon shapes -->
+        <g opacity="0.9">
+          <path d="M 0 0 L 18 0 L 30 92 L 22 92 Z M 46 0 L 64 0 L 42 92 L 34 92 Z" fill="url(#${patId})" fill-rule="evenodd"/>
+        </g>
+        <!-- Ribbon fold/highlight at bottom -->
+        <path d="M 22 92 L 42 92 L 38 96 L 26 96 Z" fill="rgba(0,0,0,0.4)"/>
+
+        <!-- Metal swivel/cap connecting ribbon to hook -->
+        <rect x="24" y="93" width="16" height="5" rx="1" fill="url(#metal-${patId})" stroke="#0a0a0a" stroke-width="0.4"/>
+        <!-- Swivel pin/rivet -->
+        <circle cx="32" cy="101" r="2.4" fill="#0d0d0d" stroke="#444" stroke-width="0.3"/>
+        <circle cx="32" cy="101" r="0.9" fill="#888"/>
+
+        <!-- J-hook carabiner -->
+        <path d="M 27 103.5 L 27 113 Q 27 120 32 120 Q 38 120 38 115 L 38 108 L 35.5 108 L 35.5 115 Q 35.5 117 32 117 Q 29.5 117 29.5 115 L 29.5 103.5 Z"
+              fill="url(#metal-${patId})" stroke="#0a0a0a" stroke-width="0.5"/>
+        <!-- Hook tip highlight -->
+        <path d="M 35.5 108 L 38 108 L 38 109 L 35.5 109 Z" fill="rgba(255,255,255,0.4)"/>
+      </svg>`;
+  }
+
+  function buildBadge(b) {
+    const el = document.createElement('div');
+    el.className = 'badge';
+    el.dataset.id = b.id;
+    el.dataset.cats = (b.cats || []).join(',');
+
+    const bg = b.bg || b.color || '#1a1a1a';
+    const fg = b.fg || '#ffffff';
+    const accent = b.accent || b.color || 'transparent';
+    const ribbonColor = b.ribbon || b.color || '#666';
+    const ribbonPattern = b.ribbonPattern || 'none';
+    const pattern = b.pattern || 'none';
+
+    el.style.cssText = `
+      --bg: ${bg};
+      --fg: ${fg};
+      --accent: ${accent};
+      --pattern: ${PATTERNS[pattern] || 'none'};
+    `;
+
+    const stampHtml = b.stamp ? `<div class="badge-stamp ${b.stampClass || ''}">${b.stamp}</div>` : '';
+
+    // derive new display fields from existing data with fallbacks
+    const eyebrow = b.org || '';
+    const passType = b.passType || (b.shortTitle || '').replace(/<br\s*\/?>/g, ' ');
+    const period = b.period || b.meta || '';
+    const venue = b.venue || (b.role || '').replace(/<br\s*\/?>/g, ' · ');
+
+    el.innerHTML = `
+      <div class="lanyard">${ribbonAndClipSVG(ribbonColor, ribbonPattern)}</div>
+      <div class="badge-card">
+        <div class="card-pattern" style="background-size: ${PATTERN_SIZE[pattern] || 'auto'};"></div>
+        <div class="card-loop"></div>
+        <div class="card-content">
+          <div class="card-eyebrow">${eyebrow}</div>
+          <div class="card-photo">${(() => {
+            const coverSrc = b.cover || (b.photos && b.photos[0] && b.photos[0][0]);
+            return coverSrc && /\.(jpg|jpeg|png|gif|webp)$/i.test(coverSrc)
+              ? `<img src="${coverSrc}" alt="">`
+              : `<span class="ico">${b.icon || '👤'}</span>фото 3×4`;
+          })()}</div>
+          <div class="card-title">${passType}</div>
+          <div class="card-period">${period}</div>
+        </div>
+        <div class="card-bottom">
+          <span class="venue">${venue}</span>
+          <span class="reg">${b.regNo || ''}</span>
+        </div>
+      </div>
+      ${stampHtml}`;
+
+    el.addEventListener('click', () => openBadge(b.id));
+    return el;
+  }
+
+  BADGES.forEach(b => grid.appendChild(buildBadge(b)));
+
+  // ===== Filters =====
+  const filterBtns = document.querySelectorAll('#filters .filter');
+  filterBtns.forEach(b => b.addEventListener('click', () => {
+    filterBtns.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    const cat = b.dataset.cat;
+    document.querySelectorAll('.badge').forEach(badge => {
+      const cats = (badge.dataset.cats || '').split(',');
+      badge.classList.toggle('hidden', cat !== 'all' && !cats.includes(cat));
+    });
+  }));
+
+  // ===== Modal =====
+  let curIdx = 0;
+  function fillModal(id) {
+    const b = BADGES.find(x => x.id === id);
+    if (!b) return;
+    const head = document.getElementById('mHead');
+    head.style.background = b.color;
+    head.classList.toggle('dark', !!b.darkHeader);
+    head.style.color = b.darkHeader ? 'var(--paper)' : 'var(--ink)';
+
+    document.getElementById('mEyebrow').textContent = b.eyebrow;
+    document.getElementById('mTitle').textContent = b.title;
+    document.getElementById('mReg').textContent = b.regNo;
+    document.getElementById('mBody').innerHTML = b.body;
+    document.getElementById('mTags').innerHTML = (b.tags || []).map(t => `<span class="modal-tag">${t}</span>`).join('');
+    document.getElementById('mStats').innerHTML = (b.stats || []).map(s =>
+      `<div class="modal-stat"><div class="v">${s[0]}</div><div class="l">${s[1]}</div></div>`).join('');
+
+    const photos = b.photos || [];
+    const gallery = document.getElementById('mGallery');
+    const wrap = document.getElementById('mGalleryWrap');
+    if (photos.length === 0) {
+      wrap.style.display = 'none';
+    } else {
+      wrap.style.display = 'block';
+      const cls = photos.length >= 7 ? 'count-many' : `count-${photos.length}`;
+      gallery.className = 'modal-gallery ' + cls;
+      gallery.innerHTML = photos.map((p, i) => {
+        const src = p[0] || '📷';
+        const cap = p[1] || '';
+        const isImg = /\.(jpg|jpeg|png|gif|webp)$/i.test(src);
+        const media = isImg
+          ? `<img src="${src}" alt="${cap}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">`
+          : `<span class="ico">${src}</span>`;
+        return `<div class="modal-photo">${media}<span class="cap">${cap}</span><span class="corner">${String(i+1).padStart(2,'0')}/${String(photos.length).padStart(2,'0')}</span></div>`;
+      }).join('');
+      document.getElementById('mGalleryCnt').textContent = `${photos.length} ${photos.length === 1 ? 'фото' : (photos.length < 5 ? 'фото' : 'фото')}`;
+    }
+
+    curIdx = BADGES.findIndex(x => x.id === id);
+    document.getElementById('mNavInfo').textContent = `${curIdx + 1} / ${BADGES.length}`;
+  }
+  function openBadge(id) {
+    fillModal(id);
+    document.getElementById('modalBack').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeBadge() {
+    document.getElementById('modalBack').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function navBadge(dir) {
+    const next = (curIdx + dir + BADGES.length) % BADGES.length;
+    fillModal(BADGES[next].id);
+  }
+  window.openBadge = openBadge;
+  window.closeBadge = closeBadge;
+  window.navBadge = navBadge;
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('modalBack').classList.contains('active')) return;
+    if (e.key === 'Escape') closeBadge();
+    if (e.key === 'ArrowRight') navBadge(1);
+    if (e.key === 'ArrowLeft') navBadge(-1);
+  });
+</script>
+</body>
+</html>
